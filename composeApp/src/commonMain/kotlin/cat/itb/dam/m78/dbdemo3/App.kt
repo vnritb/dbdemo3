@@ -22,23 +22,13 @@ fun App() {
     MaterialTheme {
         val myTableQueries = database.myTableQueries
         //myTableQueries.insert("some Text")
-        //val all = myTableQueries.selectAll().executeAsList()
+        val all = myTableQueries.selectAll().executeAsList()
         //val one = myTableQueries.find(1).executeAsOneOrNull()
 
 
         var showContent by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            //Text(all[0].text)
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
-                }
-            }
+            Text(all[0])
         }
     }
 }
