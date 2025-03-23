@@ -1,4 +1,4 @@
-package cat.itb.dam.m78.dbdemo3
+package cat.itb.dam.m78.dbdemo3.model
 
 import app.cash.sqldelight.db.SqlDriver
 import cat.itb.dam.m78.dbdemo3.db.Database

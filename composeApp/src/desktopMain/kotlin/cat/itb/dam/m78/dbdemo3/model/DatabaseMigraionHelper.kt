@@ -1,8 +1,7 @@
-package cat.itb.dam.m78.dbdemo3
+package cat.itb.dam.m78.dbdemo3.model
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
-import cat.itb.dam.m78.dbdemo3.db.Database
 import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
 
