@@ -1,7 +1,7 @@
 CREATE TABLE myTable (
   id INTEGER PRIMARY KEY NOT NULL,
   text TEXT NOT NULL,
-  text2 TEXT NOT NULL
+  text2 TEXT
 );
 CREATE INDEX myTable_full_name ON myTable(text);
 DELETE FROM myTable;
@@ -9,4 +9,4 @@ INSERT INTO myTable(id,text,text2) VALUES (1, "bla","foo");
 selectAll:
 SELECT text FROM myTable;
 insert:
-INSERT INTO myTable(text,text2) VALUES (?,?);
+INSERT INTO myTable(id, text) VALUES (?,?);

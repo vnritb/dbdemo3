@@ -1,5 +1,0 @@
-ALTER TABLE myTable ADD COLUMN text3 TEXT NOT NULL;
-DELETE FROM myTable;
-INSERT INTO myTable(id,text,text2,text3) VALUES (1, "bla","foo","you");
-insert:
-INSERT INTO myTable(text,text2,text3) VALUES (?,?,?);
