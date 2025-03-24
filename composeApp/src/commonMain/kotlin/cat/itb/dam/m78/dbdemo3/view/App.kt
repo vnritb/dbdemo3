@@ -11,9 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import cat.itb.dam.m78.dbdemo3.model.DatabaseViewModel
-import cat.itb.dam.m78.dbdemo3.model.database
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
