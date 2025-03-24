@@ -11,13 +11,29 @@ class DatabaseViewModel : ViewModel() {
     val allTexts = mutableStateOf<List<MyTable>>(emptyList())
 
     init {
-        fetchAllTexts()
+        _fetchAllTexts()
     }
 
-    private fun fetchAllTexts() {
+    private fun _fetchAllTexts() {
         viewModelScope.launch {
             val myTableQueries = database.myTableQueries
             allTexts.value = myTableQueries.selectAll().executeAsList()
+        }
+    }
+
+    fun insertText(text: String) {
+        viewModelScope.launch {
+            val myTableQueries = database.myTableQueries
+            myTableQueries.insert(text)
+            _fetchAllTexts()
+        }
+    }
+
+    fun deleteText(id: Long) {
+        viewModelScope.launch {
+            val myTableQueries = database.myTableQueries
+            myTableQueries.delete( id)
+            _fetchAllTexts()
         }
     }
 }
