@@ -1,6 +1,8 @@
 package cat.itb.dam.m78.dbdemo3.view
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -64,11 +66,11 @@ fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // List of items
-            Column(
+            LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                all.forEach { item ->
+                items(all) { item ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
