@@ -33,17 +33,31 @@ fun App() {
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                TextField(
-                    value = inputText,
-                    onValueChange = { inputText = it },
-                    label = { Text("Enter text") }
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Button(onClick = { displayedText = inputText }) {
-                    Text("Show Text")
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    TextField(
+                        value = inputText,
+                        onValueChange = { inputText = it },
+                        label = { Text("Enter text") },
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(8.dp)
+                            .background(MaterialTheme.colors.background, shape = RoundedCornerShape(8.dp))
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Button(
+                        onClick = { displayedText = inputText },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
+                        modifier = Modifier.padding(8.dp)
+                    ) {
+                        Text("Add", color = MaterialTheme.colors.onPrimary)
+                    }
                 }
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(displayedText)
+                Text(displayedText, style = MaterialTheme.typography.h6)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -63,7 +77,7 @@ fun App() {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text(text)
+                        Text(text, style = MaterialTheme.typography.body1)
                         IconButton(onClick = { println("pulsado") }) {
                             Icon(Icons.Default.Delete, contentDescription = "Delete")
                         }
