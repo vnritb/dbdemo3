@@ -3,10 +3,7 @@ package cat.itb.dam.m78.dbdemo3.view
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
@@ -21,26 +18,58 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun App() {
     MaterialTheme {
         val myTableQueries = database.myTableQueries
-        //myTableQueries.insert(4,"Hello, world!")
         val all = myTableQueries.selectAll().executeAsList()
-        //val one = myTableQueries.find(1).executeAsOneOrNull()
         var showContent by remember { mutableStateOf(false) }
+        var inputText by remember { mutableStateOf("") }
+        var displayedText by remember { mutableStateOf("") }
+
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            all.forEach { text ->
-                Row (
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                        .background(MaterialTheme.colors.surface, shape = RoundedCornerShape(8.dp))
-                        .padding(16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(text)
-                    IconButton(onClick = { println("pulsado") }) {
-                        Icon(Icons.Default.Delete, contentDescription = "Delete")
+            // Text field and button
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .background(MaterialTheme.colors.surface, shape = RoundedCornerShape(8.dp))
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                TextField(
+                    value = inputText,
+                    onValueChange = { inputText = it },
+                    label = { Text("Enter text") }
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(onClick = { displayedText = inputText }) {
+                    Text("Show Text")
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(displayedText)
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // List of items
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                all.forEach { text ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                            .background(MaterialTheme.colors.surface, shape = RoundedCornerShape(8.dp))
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text)
+                        IconButton(onClick = { println("pulsado") }) {
+                            Icon(Icons.Default.Delete, contentDescription = "Delete")
+                        }
                     }
-                }            }
+                }
+            }
         }
     }
 }
