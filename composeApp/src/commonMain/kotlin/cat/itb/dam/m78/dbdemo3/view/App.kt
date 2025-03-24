@@ -1,5 +1,4 @@
 package cat.itb.dam.m78.dbdemo3.view
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -67,7 +66,7 @@ fun App() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                all.forEach { text ->
+                all.forEach { item ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -77,7 +76,7 @@ fun App() {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text(text, style = MaterialTheme.typography.body1)
+                        Text(item.text, style = MaterialTheme.typography.body1)
                         IconButton(onClick = { println("pulsado") }) {
                             Icon(Icons.Default.Delete, contentDescription = "Delete")
                         }
