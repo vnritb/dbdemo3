@@ -116,7 +116,7 @@ kotlin {
 //Configuraciones específicas para escritorio
 compose.desktop {
     application {
-        mainClass = "cat.itb.dam.m78.dbdemo3.MainKt"
+        mainClass = "cat.itb.dam.m78.dbdemo3.view.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
