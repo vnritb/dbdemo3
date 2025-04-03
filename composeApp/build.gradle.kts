@@ -1,5 +1,7 @@
 //Això està al plugin composeMultiplatform
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 //Això està al  plugin kotlinMultiplatform
 //import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 //import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -9,9 +11,11 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    //alias(libs.plugins.androidApplication)
+
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.androidApplication)
+    //alias(libs.plugins.androidLibrary)
 
     //SQL Delight
     //id("app.cash.sqldelight") version "2.0.2"
@@ -36,13 +40,12 @@ kotlin {
     jvm("desktop")
 
     //Target Android
-
-//    androidTarget {
+    androidTarget {
 //        @OptIn(ExperimentalKotlinGradlePluginApi::class)
 //        compilerOptions {
 //            jvmTarget.set(JvmTarget.JVM_11)
 //        }
-//    }
+    }
 //
 //    //Terget Wasm
 //    @OptIn(ExperimentalWasmDsl::class)
@@ -100,13 +103,13 @@ kotlin {
 
         }
 
-//        androidMain.dependencies {
-//            implementation(compose.preview)
-//            implementation(libs.androidx.activity.compose)
-//            //Sql Delight
-//            implementation(libs.delight.android.driver)
-//
-//        }
+        androidMain.dependencies {
+            implementation(compose.preview)
+            implementation(libs.androidx.activity.compose)
+            //Sql Delight
+            implementation(libs.delight.android.driver)
+
+        }
 //        nativeMain.dependencies {
 //            implementation(libs.delight.native.driver)
 //        }
@@ -127,34 +130,37 @@ compose.desktop {
 }
 
 //Configuraciones específicas de Android
-//android {
-//    namespace = "cat.itb.dam.m78.dbdemo3"
-//    compileSdk = libs.versions.android.compileSdk.get().toInt()
-//
-//    defaultConfig {
-//        applicationId = "cat.itb.dam.m78.dbdemo3"
-//        minSdk = libs.versions.android.minSdk.get().toInt()
-//        targetSdk = libs.versions.android.targetSdk.get().toInt()
-//        versionCode = 1
-//        versionName = "1.0"
-//    }
-//    packaging {
-//        resources {
-//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-//        }
-//    }
-//    buildTypes {
-//        getByName("release") {
-//            isMinifyEnabled = false
-//        }
-//    }
-//    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_11
-//        targetCompatibility = JavaVersion.VERSION_11
-//    }
-//}
+android {
+    namespace = "cat.itb.dam.m78.dbdemo3"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
-//dependencies {
-//    debugImplementation(compose.uiTooling)
-//}
+    defaultConfig {
+        applicationId = "cat.itb.dam.m78.dbdemo3"
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = 1
+        versionName = "1.0"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_23
+        targetCompatibility = JavaVersion.VERSION_23
+    }
+}
+dependencies {
+    implementation(libs.support.annotations)
+}
+
+dependencies {
+    debugImplementation(compose.uiTooling)
+}
 
